@@ -16,7 +16,6 @@ public class Encryption {
         try {
             Encryption encryption = new Encryption();
             encryption.init();
-
             return encryption;
         } catch (Exception e) {
             System.out.println("Failed to init encryption " + e.getMessage());
@@ -45,7 +44,6 @@ public class Encryption {
         GCMParameterSpec spec = new GCMParameterSpec(DATA_LENGTH, encryptionCipher.getIV());
         decryptionCipher.init(Cipher.DECRYPT_MODE, key, spec);
         byte[] decryptedBytes = decryptionCipher.doFinal(dataInBytes);
-
         return new String(decryptedBytes);
     }
 
