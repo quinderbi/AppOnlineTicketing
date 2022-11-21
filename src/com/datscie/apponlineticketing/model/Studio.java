@@ -21,6 +21,10 @@ public class Studio {
         return seats;
     }
 
+    public int getCapacity() {
+        return seats.length;
+    }
+
     public void addSeat(Seat seat) {
         Seat[] temp = new Seat[seats.length + 1];
         for (int i = 0; i < seats.length; i++) {
