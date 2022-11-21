@@ -55,5 +55,4 @@ public class Movie {
     public void setDuration(int duration) {
         this.duration = duration;
     }
-
 }
