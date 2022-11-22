@@ -2,16 +2,14 @@ package com.datscie.apponlineticketing.model.auth;
 
 import com.datscie.apponlineticketing.utils.Encryption;
 
-public class Auth {
+public abstract class Auth {
     private String id;
     private String name;
     private String email;
     private String phone;
     private String password;
-    private final Encryption encryption;
 
     public Auth() {
-        encryption = Encryption.getInstance();
     }
 
     public String getId() {
@@ -46,26 +44,15 @@ public class Auth {
         this.phone = phone;
     }
 
-    public void login(String email, String password) {
-        try {
-            if (email.equals(this.email) && password.equals(encryption.decrypt(this.password))) {
-                System.out.println("Login Success");
-            } else {
-                System.out.println("Login Failed");
-            }
-        } catch (Exception e) {
-            System.out.println("Login Failed " + e.getMessage());
-        }
+    protected void setPassword(String password) {
+        this.password = password;
     }
 
-    public void register(String name, String email, String phone, String password) {
-        try {
-            this.name = name;
-            this.email = email;
-            this.phone = phone;
-            this.password = encryption.encrypt(password);
-        } catch (Exception e) {
-            System.out.println("Failed to encrypt password " + e.getMessage());
-        }
+    public boolean login() {
+        return false;
+    }
+
+    public boolean register() {
+        return false;
     }
 }

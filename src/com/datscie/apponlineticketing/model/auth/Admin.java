@@ -1,14 +1,55 @@
 package com.datscie.apponlineticketing.model.auth;
 
+import java.util.Scanner;
+
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Studio;
+import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class Admin extends User {
-    public void addMovie() {}
+    public void addMovie() {
+        Scanner scanner = new Scanner(System.in);
 
-    public void editMovie(String movieID) {}
+        System.out.print("Movie title: ");
+        String title = scanner.nextLine();
+        System.out.print("Movie genre: ");
+        String genre = scanner.nextLine();
+        System.out.print("Director: ");
+        String director = scanner.nextLine();
+        System.out.println("Duration (in minutes): ");
+        int duration = scanner.nextInt();
+
+        scanner.close();
+
+        Movie movie = new Movie("MOV001", title, genre, director, duration);
+        
+        DatabaseMock db = DatabaseMock.getInstance();
+
+        db.addMovie(movie);
+    }
+
+    public void editMovie(String movieID) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Movie title: ");
+        String title = scanner.nextLine();
+        System.out.print("Movie genre: ");
+        String genre = scanner.nextLine();
+        System.out.print("Director: ");
+        String director = scanner.nextLine();
+        System.out.println("Duration (in minutes): ");
+        int duration = scanner.nextInt();
+
+        scanner.close();
+
+        Movie movie = new Movie(movieID, title, genre, director, duration);
+        
+        DatabaseMock db = DatabaseMock.getInstance();
+
+        db.editMovie(movie);
+    }
 
     public void deleteMovie(String movieID) {}
 
@@ -47,4 +88,41 @@ public class Admin extends User {
     }
 
     public void viewReports() {}
+
+    @Override
+    public boolean login() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        scanner.close();
+
+        return email.equals("user@gmail.com") && password.equals("user");
+    }
+
+    @Override
+    public boolean register() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Phone: ");
+        String phone = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        scanner.close();
+
+        this.setName(name);
+        this.setEmail(email);
+        this.setPhone(phone);
+        this.setPassword(password);
+
+        return true;
+    }
 }

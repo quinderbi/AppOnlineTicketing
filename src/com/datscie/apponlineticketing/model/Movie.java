@@ -7,7 +7,6 @@ public class Movie {
     private String director;
     private int duration;
 
-
     public Movie(String movieId, String title, String genre, String director, int duration) {
         this.movieId = movieId;
         this.title = title;
