@@ -1,5 +1,6 @@
 package com.datscie.apponlineticketing.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.datscie.apponlineticketing.model.Movie;
@@ -24,6 +25,15 @@ public class DatabaseMock {
             db = new DatabaseMock();
   
         return db;
+    }
+
+    private DatabaseMock() {
+        this.movies = new ArrayList<Movie>();
+        this.studios = new ArrayList<Studio>();
+        this.tickets = new ArrayList<Ticket>();
+        this.users = new ArrayList<User>();
+        this.admins = new ArrayList<Admin>();
+        this.schedules = new ArrayList<Schedule>();
     }
 
     public Movie[] getMovies() {
