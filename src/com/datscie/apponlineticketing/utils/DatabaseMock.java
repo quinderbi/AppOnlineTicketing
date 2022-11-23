@@ -20,7 +20,6 @@ public class DatabaseMock {
     public static DatabaseMock getInstance() {
         if (db == null)
             db = new DatabaseMock();
-  
         return db;
     }
 

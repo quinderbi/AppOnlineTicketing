@@ -42,7 +42,7 @@ public abstract class Auth {
     protected String getPassword() {
         return password;
     }
-
+    
     protected void setPassword(String password) {
         this.password = password;
     }

@@ -7,13 +7,15 @@ public class Schedule {
     private Studio studio;
     private LocalDateTime dateTime;
     private Ticket[] tickets;
+    private int price;
 
-    public Schedule(String scheduleId, Movie movie, Studio studio, LocalDateTime dateTime) {
+    public Schedule(String scheduleId, Movie movie, Studio studio, LocalDateTime dateTime, int price) {
         this.scheduleId = scheduleId;
         this.movie = movie;
         this.studio = studio;
         this.dateTime = dateTime;
         this.tickets = new Ticket[studio.getCapacity()];
+        this.price = price;
     }
 
     public String getScheduleId() {
@@ -58,5 +60,13 @@ public class Schedule {
             }
         }
         return availableSeats;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
