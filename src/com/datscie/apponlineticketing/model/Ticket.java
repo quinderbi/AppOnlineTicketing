@@ -3,11 +3,11 @@ package com.datscie.apponlineticketing.model;
 import java.time.LocalDateTime;
 
 public class Ticket {
-    String ticketID;
-    Movie movie;
-    LocalDateTime dateTime;
-    Studio studio;
-    Seat seat;
+    private String ticketID;
+    private Movie movie;
+    private LocalDateTime dateTime;
+    private Studio studio;
+    private Seat seat;
 
     public Ticket(String ticketID, Movie movie, LocalDateTime dateTime, Studio studio, Seat seat) {
         this.ticketID = ticketID;

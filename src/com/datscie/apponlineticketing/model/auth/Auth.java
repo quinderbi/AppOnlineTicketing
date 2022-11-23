@@ -1,6 +1,6 @@
 package com.datscie.apponlineticketing.model.auth;
 
-import com.datscie.apponlineticketing.utils.Encryption;
+// import com.datscie.apponlineticketing.utils.Encryption;
 
 public abstract class Auth {
     private String id;

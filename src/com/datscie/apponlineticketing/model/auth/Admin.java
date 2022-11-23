@@ -197,7 +197,9 @@ public class Admin extends User {
     }
 
     public void viewReports() {
-        
+        DatabaseMock db = DatabaseMock.getInstance();
+        System.out.println("Total movie: " + db.movies.size());
+        System.out.println("Total schedule in movie: " + db.schedules.size());
     }
 
     @Override
