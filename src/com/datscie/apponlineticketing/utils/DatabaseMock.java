@@ -6,12 +6,14 @@ import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.model.auth.User;
+import com.datscie.apponlineticketing.model.Schedule;
 
 public class DatabaseMock {
     public List<Movie> movies;
     public List<Studio> studios;
     public List<Ticket> tickets;
     public List<User> users;
+    public List<Schedule> schedules;
 
     private static DatabaseMock db = null;
 
@@ -157,6 +159,41 @@ public class DatabaseMock {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().equals(userId)) {
                 users.remove(i);
+                break;
+            }
+        }
+    }
+
+    public Schedule[] getSchedules() {
+        return schedules.toArray(new Schedule[schedules.size()]);
+    }
+
+    public Schedule getSchedule(String scheduleID) {
+        for (Schedule schedule : schedules) {
+            if (schedule.getScheduleId().equals(scheduleID))
+                return schedule;
+        }
+
+        return null;
+    }
+
+    public void addSchedule(Schedule schedule) {
+        schedules.add(schedule);
+    }
+
+    public void editSchedule(Schedule schedule) {
+        for (int i = 0; i < schedules.size(); i++) {
+            if (schedules.get(i).getScheduleId().equals(schedule.getScheduleId())) {
+                schedules.set(i, schedule);
+                break;
+            }
+        }
+    }
+
+    public void deleteSchedule(String scheduleId) {
+        for (int i = 0; i < schedules.size(); i++) {
+            if (schedules.get(i).getScheduleId().equals(scheduleId)) {
+                schedules.remove(i);
                 break;
             }
         }
