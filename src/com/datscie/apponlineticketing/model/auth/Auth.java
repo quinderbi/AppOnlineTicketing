@@ -7,9 +7,6 @@ public abstract class Auth {
     private String phone;
     private String password;
 
-    public Auth() {
-    }
-
     public String getId() {
         return id;
     }
@@ -42,6 +39,10 @@ public abstract class Auth {
         this.phone = phone;
     }
 
+    protected String getPassword() {
+        return password;
+    }
+
     protected void setPassword(String password) {
         this.password = password;
     }
@@ -50,7 +51,5 @@ public abstract class Auth {
         return false;
     }
 
-    public boolean register(String name, String email, String phone, String password) {
-        return false;
-    }
+    public void register(String name, String email, String phone, String password) {}
 }

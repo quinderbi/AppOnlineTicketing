@@ -5,14 +5,14 @@ import java.util.List;
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.model.Ticket;
-import com.datscie.apponlineticketing.model.auth.User;
+import com.datscie.apponlineticketing.model.auth.Auth;
 import com.datscie.apponlineticketing.model.Schedule;
 
 public class DatabaseMock {
     public List<Movie> movies;
     public List<Studio> studios;
     public List<Ticket> tickets;
-    public List<User> users;
+    public List<Auth> users;
     public List<Schedule> schedules;
 
     private static DatabaseMock db = null;
@@ -129,12 +129,12 @@ public class DatabaseMock {
         }
     }
 
-    public User[] getUsers() {
-        return users.toArray(new User[users.size()]);
+    public Auth[] getUsers() {
+        return users.toArray(new Auth[users.size()]);
     }
 
-    public User getUser(String userID) {
-        for (User user : users) {
+    public Auth getUser(String userID) {
+        for (Auth user : users) {
             if (user.getId().equals(userID))
                 return user;
         }
@@ -142,11 +142,11 @@ public class DatabaseMock {
         return null;
     }
 
-    public void addUser(User user) {
+    public void addUser(Auth user) {
         users.add(user);
     }
 
-    public void editUser(User user) {
+    public void editUser(Auth user) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().equals(user.getId())) {
                 users.set(i, user);
