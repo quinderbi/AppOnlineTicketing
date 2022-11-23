@@ -8,6 +8,7 @@ import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Studio;
+import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class Admin extends User {
@@ -122,8 +123,10 @@ public class Admin extends User {
         int totalRevenue = 0;
 
         for (Schedule schedule : db.getSchedules()) {
-            
+            totalRevenue += schedule.getPrice() * schedule.getTickets().length;
         }
+
+        System.out.println("Total Revenue: " + totalRevenue);
     }
 
     @Override
