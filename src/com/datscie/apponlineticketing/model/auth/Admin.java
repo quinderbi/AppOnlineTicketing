@@ -120,6 +120,7 @@ public class Admin extends User {
     }
 
     public void viewReports() {
+        
     }
 
     @Override
