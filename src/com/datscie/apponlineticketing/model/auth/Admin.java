@@ -207,14 +207,14 @@ public class Admin extends User {
         }
     }
 
-    public void deleteSeat(String studiID, String seatID) {
-        if (studiID == null || seatID == null) {
+    public void deleteSeat(String studioID, String seatID) {
+        if (studioID == null || seatID == null) {
             return;
         }
         Seat seat = new Seat(seatID);
         DatabaseMock db = DatabaseMock.getInstance();
         for (int i = 0; i < db.studios.size(); i++) {
-            if (db.studios.get(i).getStudioId().equals(studiID)) {
+            if (db.studios.get(i).getStudioId().equals(studioID)) {
                 db.studios.get(i).removeSeat(seat);
                 break;
             }
