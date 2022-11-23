@@ -20,12 +20,24 @@ public class Schedule {
         return scheduleId;
     }
 
+    public void setScheduleId(String scheduleId) {
+        this.scheduleId = scheduleId;
+    }
+
     public Movie getMovie() {
         return movie;
     }
 
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
     public Studio getStudio() {
         return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
     }
 
     public LocalDateTime getDateTime() {

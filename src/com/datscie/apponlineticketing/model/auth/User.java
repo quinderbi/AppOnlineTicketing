@@ -20,9 +20,15 @@ public class User extends Auth {
         return new Schedule[] {};
     }
 
-    public void buyTicket(Schedule schedule, Seat seat) {
-        userTickets[userTickets.length] = new Ticket("TCK001", schedule.getMovie(), schedule.getDateTime(),
-                schedule.getStudio(), seat);
+    // public void buyTicket(Schedule schedule, Seat seat) {
+    //     userTickets[userTickets.length] = new Ticket("TCK001", schedule.getMovie(), schedule.getDateTime(),
+    //             schedule.getStudio(), seat);
+    // }
+
+    public Ticket buyTicket(String ticketID, Schedule schedule, Seat seat) {
+        Ticket ticket = new Ticket(ticketID, schedule.getMovie(), schedule.getDateTime(), schedule.getStudio(), seat);
+        userTickets[userTickets.length] = ticket;
+        return ticket;
     }
 
     @Override

@@ -34,6 +34,10 @@ public class Studio {
         seats = temp;
     }
 
+    public void editSeat(Seat seat, int index) {
+        seats[index] = seat;
+    }
+
     public void removeSeat(Seat seat) {
         Seat[] temp = new Seat[seats.length - 1];
         int index = 0;
