@@ -8,7 +8,6 @@ import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Studio;
-import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class Admin extends User {
