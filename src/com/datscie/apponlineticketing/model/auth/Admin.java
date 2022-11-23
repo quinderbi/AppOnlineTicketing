@@ -1,6 +1,8 @@
 package com.datscie.apponlineticketing.model.auth;
 
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
+import java.util.Random;
 import java.util.Scanner;
 
 import com.datscie.apponlineticketing.model.Movie;
@@ -45,7 +47,7 @@ public class Admin extends User {
         String scheduleID = scanner.nextLine();
         System.out.println("Date: ");
         LocalDateTime date = LocalDateTime.parse(scanner.nextLine());
-        
+
         scanner.close();
 
         Schedule schedule = new Schedule(scheduleID, movie, studio, date);
@@ -78,109 +80,49 @@ public class Admin extends User {
         return new Schedule[] {};
     }
 
-    public void addStudio() {
-        Scanner scanner = new Scanner(System.in);
+    public void addStudio(Seat[] seats) {
+        byte[] array = new byte[4];
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
 
-        System.out.println("Studio ID: ");
-        String studioID = scanner.nextLine();
-        System.out.println("Studio seats: ");
-        Seat[] seats = new Seat[scanner.nextInt()];
-        for (int i = 0; i < seats.length; i++) {
-            System.out.println("Seat " + (i + 1) + ": ");
-            seats[i] = new Seat(scanner.nextLine());
-        }
-
-        scanner.close();
-
-        Studio studio = new Studio(studioID, seats);
+        Studio studio = new Studio("STD-" + generatedString, seats);
         DatabaseMock db = DatabaseMock.getInstance();
         db.addStudio(studio);
     }
 
-    public void editStudio(String studioID) {
-        Scanner scanner = new Scanner(System.in);
-
-        Seat[] seats = new Seat[scanner.nextInt()];
-        for (int i = 0; i < seats.length; i++) {
-            System.out.println("Seat " + (i + 1) + ": ");
-            seats[i] = new Seat(scanner.nextLine());
-        }
-
-        scanner.close();
-
-        Studio studio = new Studio(studioID, seats);
+    public void editStudio(Studio studio, String studioID) {
+        studio.setStudioId(studioID);
         DatabaseMock db = DatabaseMock.getInstance();
         db.editStudio(studio);
     }
 
-    public void deleteStudio(String studioID) {
+    public void deleteStudio(Studio studio) {
         DatabaseMock db = DatabaseMock.getInstance();
-        for (int i = 0; i < db.studios.size(); i++) {
-            if (db.studios.get(i).getStudioId().equals(studioID)) {
-                db.studios.remove(i);
-                break;
-            }
-        }
+        db.deleteStudio(studio.getStudioId());
     }
 
     public Studio[] getStudios() {
         return new Studio[] {};
     }
 
-    public void addSeat(String studioID) {
-        if (studioID == null) {
-            return;
-        }
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Seat ID: ");
-        String seatID = scanner.nextLine();
-
-        scanner.close();
-
-        Seat seat = new Seat(seatID);
+    public void addSeat(Studio studio, Seat seat) {
         DatabaseMock db = DatabaseMock.getInstance();
-        for (int i = 0; i < db.studios.size(); i++) {
-            if (db.studios.get(i).getStudioId().equals(studioID)) {
-                db.studios.get(i).addSeat(seat);
-                break;
-            }
-        }
+        studio.addSeat(seat);
+        db.editStudio(studio);
     }
 
-    public void editSeat(String studioID, String seatID) {
-        if (studioID == null || seatID == null) {
-            return;
-        }
-        Seat seat = new Seat(seatID);
+    public void deleteSeat(Studio studio, Seat seat) {
         DatabaseMock db = DatabaseMock.getInstance();
-        for (int i = 0; i < db.studios.size(); i++) {
-            if (db.studios.get(i).getStudioId().equals(studioID)) {
-                db.studios.get(i).editSeat(seat, i);
-                break;
-            }
-        }
+        studio.removeSeat(seat);
+        db.editStudio(studio);
     }
 
-    public void deleteSeat(String studiID, String seatID) {
-        if (studiID == null || seatID == null) {
-            return;
-        }
-        Seat seat = new Seat(seatID);
-        DatabaseMock db = DatabaseMock.getInstance();
-        for (int i = 0; i < db.studios.size(); i++) {
-            if (db.studios.get(i).getStudioId().equals(studiID)) {
-                db.studios.get(i).removeSeat(seat);
-                break;
-            }
-        }
+    public Seat[] getSeats(Studio studio) {
+        return studio.getSeats();
     }
 
-    public Seat[] getSeats() {
-        return new Seat[] {};
+    public void viewReports() {
     }
-
-    public void viewReports() {}
 
     @Override
     public boolean login(String email, String password) {

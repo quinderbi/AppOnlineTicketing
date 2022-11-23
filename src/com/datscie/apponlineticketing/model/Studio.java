@@ -20,7 +20,6 @@ public class Studio {
     public Seat[] getSeats() {
         return seats;
     }
-
     public int getCapacity() {
         return seats.length;
     }
@@ -48,5 +47,9 @@ public class Studio {
             }
         }
         seats = temp;
+    }
+
+    public void setSeats(Seat[] seats) {
+        this.seats = seats;
     }
 }
