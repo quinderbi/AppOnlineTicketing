@@ -19,7 +19,7 @@ public class User extends Auth {
     }
 
     public Schedule[] getAvailableSchedules() {
-        return new Schedule[] {};
+        return DatabaseMock.getInstance().getSchedules();
     }
 
     public void buyTicket(Schedule schedule, Seat seat) {
