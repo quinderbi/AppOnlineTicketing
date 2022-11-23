@@ -18,52 +18,20 @@ public class Admin extends User {
         db.addMovie(movie);
     }
 
-    public void editMovie() {
-        Scanner scanner = new Scanner(System.in);
-        Movie movie;
-
-        while (true) {
-            System.out.print("Movie ID to edit: ");
-            String id = scanner.nextLine();
-
-            movie = DatabaseMock.getInstance().getMovie(id);
-
-            if (movie == null) {
-                System.out.println("Movie not found!");
-            } else {
-                break;
-            }
-        }
-
-        System.out.print("Movie title (" + movie.getTitle() + "): ");
-        String title = scanner.nextLine();
-
-        System.out.print("Movie genre (" + movie.getGenre() + "): ");
-        String genre = scanner.nextLine();
-
-        System.out.print("Director (" + movie.getDirector() + "): ");
-        String director = scanner.nextLine();
-
-        System.out.println("Duration (in minutes) (" + movie.getDuration() + "): ");
-        int duration = scanner.nextInt();
-
-        scanner.close();
-
+    public void editMovie(Movie movie, String title, String genre, String director, int duration) {
         movie.setTitle(title.isEmpty() ? movie.getTitle() : title);
         movie.setGenre(genre.isEmpty() ? movie.getGenre() : genre);
         movie.setDirector(director.isEmpty() ? movie.getDirector() : director);
         movie.setDuration(duration == 0 ? movie.getDuration() : duration);
+
+        DatabaseMock db = DatabaseMock.getInstance();
+
+        db.editMovie(movie);
     }
 
-    public void deleteMovie(String movieID) {
+    public void deleteMovie(Movie movie) {
         DatabaseMock db = DatabaseMock.getInstance();
-        for (int i = 0; i < db.movies.size(); i++) {
-            if (db.movies.get(i).getMovieId().equals(movieID)) {
-                db.movies.remove(i);
-                break;
-            }
-        }
-        // db.deleteMovie(movieID);
+        db.deleteMovie(movie.getMovieId());
     }
 
     public Movie[] getMovies() {
@@ -83,10 +51,6 @@ public class Admin extends User {
         Schedule schedule = new Schedule(scheduleID, movie, studio, date);
         DatabaseMock db = DatabaseMock.getInstance();
         db.addSchedule(schedule);
-    }
-
-    public void addSchedule() {
-
     }
 
     public void editSchedule(String scheduleID, Movie movie, Studio studio) {
