@@ -1,5 +1,7 @@
 package com.datscie.apponlineticketing.model.auth;
 
+// import javax.xml.crypto.Data;
+
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Ticket;
@@ -51,25 +53,12 @@ public class User extends Auth {
     }
 
     @Override
-    public boolean register() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Phone: ");
-        String phone = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        scanner.close();
-
+    public void register(String name, String email, String phone, String password) {
         this.setName(name);
         this.setEmail(email);
         this.setPhone(phone);
         this.setPassword(password);
 
-        return true;
+        DatabaseMock.getInstance().addUser(this);
     }
 }
