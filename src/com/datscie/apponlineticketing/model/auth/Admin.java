@@ -9,20 +9,7 @@ import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class Admin extends User {
-    public void addMovie() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Movie title: ");
-        String title = scanner.nextLine();
-        System.out.print("Movie genre: ");
-        String genre = scanner.nextLine();
-        System.out.print("Director: ");
-        String director = scanner.nextLine();
-        System.out.println("Duration (in minutes): ");
-        int duration = scanner.nextInt();
-
-        scanner.close();
-
+    public void addMovie(String title, String genre, String director, int duration) {
         Movie movie = new Movie("MOV001", title, genre, director, duration);
 
         DatabaseMock db = DatabaseMock.getInstance();
@@ -94,6 +81,7 @@ public class Admin extends User {
     }
 
     public void addSchedule() {
+
     }
 
     public void editSchedule(String scheduleID) {
@@ -137,39 +125,15 @@ public class Admin extends User {
     }
 
     @Override
-    public boolean login() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        scanner.close();
-
+    public boolean login(String email, String password) {
         return email.equals("user@gmail.com") && password.equals("user");
     }
 
     @Override
-    public boolean register() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Phone: ");
-        String phone = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        scanner.close();
-
+    public void register(String name, String email, String phone, String password) {
         this.setName(name);
         this.setEmail(email);
         this.setPhone(phone);
         this.setPassword(password);
-
-        return true;
     }
 }

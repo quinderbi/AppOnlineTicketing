@@ -42,15 +42,17 @@ public abstract class Auth {
         this.phone = phone;
     }
 
+    protected String getPassword() {
+        return password;
+    }
+
     protected void setPassword(String password) {
         this.password = password;
     }
 
-    public boolean login() {
+    public boolean login(String email, String password) {
         return false;
     }
 
-    public boolean register() {
-        return false;
-    }
+    public void register(String name, String email, String phone, String password) {}
 }
