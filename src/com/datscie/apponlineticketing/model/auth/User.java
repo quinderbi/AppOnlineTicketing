@@ -40,6 +40,7 @@ public class User extends Auth {
         for (User user : users) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 this.setId(user.getId());
+                this.setName(user.getName());
                 this.setEmail(user.getEmail());
                 this.setPhone(user.getPhone());
                 this.setPassword(user.getPassword());
