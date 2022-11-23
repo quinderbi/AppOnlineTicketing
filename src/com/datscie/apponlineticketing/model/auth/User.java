@@ -1,5 +1,8 @@
 package com.datscie.apponlineticketing.model.auth;
 
+import java.nio.charset.Charset;
+import java.util.Random;
+
 // import javax.xml.crypto.Data;
 
 import com.datscie.apponlineticketing.model.Schedule;
@@ -22,13 +25,12 @@ public class User extends Auth {
         return DatabaseMock.getInstance().getSchedules();
     }
 
-    public void buyTicket(Schedule schedule, Seat seat) {
-        userTickets[userTickets.length] = new Ticket("TCK001", schedule.getMovie(), schedule.getDateTime(),
-                schedule.getStudio(), seat);
-    }
+    public Ticket buyTicket(Schedule schedule, Seat seat) {
+        byte[] array = new byte[4];
+        new Random().nextBytes(array);
+        String id = new String(array, Charset.forName("UTF-8"));
 
-    public Ticket buyTicket(String ticketID, Schedule schedule, Seat seat) {
-        Ticket ticket = new Ticket(ticketID, schedule.getMovie(), schedule.getDateTime(), schedule.getStudio(), seat);
+        Ticket ticket = new Ticket("TIX-" + id, schedule.getMovie(), schedule.getDateTime(), schedule.getStudio(), seat);
         userTickets[userTickets.length] = ticket;
         return ticket;
     }
