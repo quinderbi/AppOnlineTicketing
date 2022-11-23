@@ -16,7 +16,6 @@ public class Admin extends User {
         Movie movie = new Movie("MOV001", title, genre, director, duration);
 
         DatabaseMock db = DatabaseMock.getInstance();
-
         db.addMovie(movie);
     }
 
@@ -27,7 +26,6 @@ public class Admin extends User {
         movie.setDuration(duration == 0 ? movie.getDuration() : duration);
 
         DatabaseMock db = DatabaseMock.getInstance();
-
         db.editMovie(movie);
     }
 
@@ -135,5 +133,6 @@ public class Admin extends User {
         this.setEmail(email);
         this.setPhone(phone);
         this.setPassword(password);
+        DatabaseMock.getInstance().addUser(this);
     }
 }

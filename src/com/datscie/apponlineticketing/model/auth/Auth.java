@@ -7,9 +7,6 @@ public abstract class Auth {
     private String phone;
     private String password;
 
-    public Auth() {
-    }
-
     public String getId() {
         return id;
     }
