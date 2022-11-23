@@ -5,14 +5,16 @@ import java.util.List;
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.model.Ticket;
-import com.datscie.apponlineticketing.model.auth.Auth;
+import com.datscie.apponlineticketing.model.auth.Admin;
+import com.datscie.apponlineticketing.model.auth.User;
 import com.datscie.apponlineticketing.model.Schedule;
 
 public class DatabaseMock {
     public List<Movie> movies;
     public List<Studio> studios;
     public List<Ticket> tickets;
-    public List<Auth> users;
+    public List<User> users;
+    public List<Admin> admins;
     public List<Schedule> schedules;
 
     private static DatabaseMock db = null;
@@ -129,12 +131,12 @@ public class DatabaseMock {
         }
     }
 
-    public Auth[] getUsers() {
-        return users.toArray(new Auth[users.size()]);
+    public User[] getUsers() {
+        return users.toArray(new User[users.size()]);
     }
 
-    public Auth getUser(String userID) {
-        for (Auth user : users) {
+    public User getUser(String userID) {
+        for (User user : users) {
             if (user.getId().equals(userID))
                 return user;
         }
@@ -142,11 +144,11 @@ public class DatabaseMock {
         return null;
     }
 
-    public void addUser(Auth user) {
+    public void addUser(User user) {
         users.add(user);
     }
 
-    public void editUser(Auth user) {
+    public void editUser(User user) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().equals(user.getId())) {
                 users.set(i, user);
@@ -159,6 +161,41 @@ public class DatabaseMock {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId().equals(userId)) {
                 users.remove(i);
+                break;
+            }
+        }
+    }
+
+    public Admin[] getAdmins() {
+        return admins.toArray(new Admin[admins.size()]);
+    }
+
+    public Admin getAdmin(String adminID) {
+        for (Admin admin : admins) {
+            if (admin.getId().equals(adminID))
+                return admin;
+        }
+
+        return null;
+    }
+
+    public void addAdmin(Admin admin) {
+        admins.add(admin);
+    }
+
+    public void editAdmin(Admin admin) {
+        for (int i = 0; i < admins.size(); i++) {
+            if (admins.get(i).getId().equals(admin.getId())) {
+                admins.set(i, admin);
+                break;
+            }
+        }
+    }
+
+    public void deleteAdmin(String adminId) {
+        for (int i = 0; i < admins.size(); i++) {
+            if (admins.get(i).getId().equals(adminId)) {
+                admins.remove(i);
                 break;
             }
         }

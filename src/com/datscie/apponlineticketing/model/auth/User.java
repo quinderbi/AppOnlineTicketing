@@ -35,7 +35,7 @@ public class User extends Auth {
 
     @Override
     public boolean login(String email, String password) {
-        User[] users = (User[]) DatabaseMock.getInstance().getUsers();
+        User[] users = DatabaseMock.getInstance().getUsers();
 
         for (User user : users) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {

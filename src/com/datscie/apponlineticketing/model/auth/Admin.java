@@ -128,14 +128,14 @@ public class Admin extends User {
 
     @Override
     public boolean login(String email, String password) {
-        Admin[] users = (Admin[]) DatabaseMock.getInstance().getUsers();
+        Admin[] admins = DatabaseMock.getInstance().getAdmins();
 
-        for (User user : users) {
-            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                this.setId(user.getId());
-                this.setEmail(user.getEmail());
-                this.setPhone(user.getPhone());
-                this.setPassword(user.getPassword());
+        for (Admin admin : admins) {
+            if (admin.getEmail().equals(email) && admin.getPassword().equals(password)) {
+                this.setId(admin.getId());
+                this.setEmail(admin.getEmail());
+                this.setPhone(admin.getPhone());
+                this.setPassword(admin.getPassword());
 
                 return true;
             }
@@ -150,6 +150,6 @@ public class Admin extends User {
         this.setEmail(email);
         this.setPhone(phone);
         this.setPassword(password);
-        DatabaseMock.getInstance().addUser(this);
+        DatabaseMock.getInstance().addAdmin(this);
     }
 }
