@@ -30,7 +30,7 @@ public class Admin extends User {
         db.addMovie(movie);
     }
 
-    public void editMovie(String movieID) {
+    public void editMovie() {
         Scanner scanner = new Scanner(System.in);
         Movie movie;
 
@@ -67,7 +67,7 @@ public class Admin extends User {
         movie.setDuration(duration == 0 ? movie.getDuration() : duration);
     }
 
-    public void deleteMovie(String movieID) {
+    public void deleteMovie() {
         Scanner scanner = new Scanner(System.in);
         Movie movie;
 
