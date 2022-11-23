@@ -3,7 +3,6 @@ package com.datscie.apponlineticketing.model.auth;
 import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.Random;
-import java.util.Scanner;
 
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
@@ -13,7 +12,11 @@ import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class Admin extends User {
     public void addMovie(String title, String genre, String director, int duration) {
-        Movie movie = new Movie("MOV001", title, genre, director, duration);
+        byte[] array = new byte[4];
+        new Random().nextBytes(array);
+        String id = new String(array, Charset.forName("UTF-8"));
+        
+        Movie movie = new Movie("MOV-" + id, title, genre, director, duration);
 
         DatabaseMock db = DatabaseMock.getInstance();
         db.addMovie(movie);
@@ -38,17 +41,12 @@ public class Admin extends User {
         return DatabaseMock.getInstance().getMovies();
     }
 
-    public void addSchedule(Movie movie, Studio studio) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Schedule ID: ");
-        String scheduleID = scanner.nextLine();
-        System.out.println("Date: ");
-        LocalDateTime date = LocalDateTime.parse(scanner.nextLine());
-
-        scanner.close();
-
-        Schedule schedule = new Schedule(scheduleID, movie, studio, date);
+    public void addSchedule(Movie movie, Studio studio, LocalDateTime dateTime, int price) {
+        byte[] array = new byte[4];
+        new Random().nextBytes(array);
+        String id = new String(array, Charset.forName("UTF-8"));
+        
+        Schedule schedule = new Schedule("SCH-" + id, movie, studio, dateTime, price);
         DatabaseMock db = DatabaseMock.getInstance();
         db.addSchedule(schedule);
     }
@@ -75,15 +73,15 @@ public class Admin extends User {
     }
 
     public Schedule[] getSchedules() {
-        return new Schedule[] {};
+        return DatabaseMock.getInstance().getSchedules();
     }
 
     public void addStudio(Seat[] seats) {
         byte[] array = new byte[4];
         new Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
+        String id = new String(array, Charset.forName("UTF-8"));
 
-        Studio studio = new Studio("STD-" + generatedString, seats);
+        Studio studio = new Studio("STD-" + id, seats);
         DatabaseMock db = DatabaseMock.getInstance();
         db.addStudio(studio);
     }
@@ -120,11 +118,30 @@ public class Admin extends User {
     }
 
     public void viewReports() {
+        DatabaseMock db = DatabaseMock.getInstance();
+        int totalRevenue = 0;
+
+        for (Schedule schedule : db.getSchedules()) {
+            
+        }
     }
 
     @Override
     public boolean login(String email, String password) {
-        return email.equals("user@gmail.com") && password.equals("user");
+        Admin[] users = (Admin[]) DatabaseMock.getInstance().getUsers();
+
+        for (User user : users) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+                this.setId(user.getId());
+                this.setEmail(user.getEmail());
+                this.setPhone(user.getPhone());
+                this.setPassword(user.getPassword());
+
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     @Override
