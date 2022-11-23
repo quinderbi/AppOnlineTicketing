@@ -33,34 +33,12 @@ public class User extends Auth {
     }
 
     @Override
-    public boolean login() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        scanner.close();
-
+    public boolean login(String email, String password) {
         return email.equals("user@gmail.com") && password.equals("user");
     }
 
     @Override
-    public boolean register() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Name: ");
-        String name = scanner.nextLine();
-        System.out.print("Email: ");
-        String email = scanner.nextLine();
-        System.out.print("Phone: ");
-        String phone = scanner.nextLine();
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-
-        scanner.close();
-
+    public boolean register(String name, String email, String phone, String password) {
         this.setName(name);
         this.setEmail(email);
         this.setPhone(phone);

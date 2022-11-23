@@ -46,11 +46,11 @@ public abstract class Auth {
         this.password = password;
     }
 
-    public boolean login() {
+    public boolean login(String email, String password) {
         return false;
     }
 
-    public boolean register() {
+    public boolean register(String name, String email, String phone, String password) {
         return false;
     }
 }
