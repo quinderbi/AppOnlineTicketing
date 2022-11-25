@@ -7,6 +7,16 @@ public abstract class Auth {
     private String phone;
     private String password;
 
+    public Auth() {}
+
+    protected Auth(String id, String name, String email, String phone, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+    }
+
     public String getId() {
         return id;
     }

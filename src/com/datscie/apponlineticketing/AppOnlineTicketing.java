@@ -49,11 +49,15 @@ public class AppOnlineTicketing {
                         System.out.println("Welcome " + admin.getName());
                         while (true){
                             System.out.println("-".repeat(50));
+                            System.out.println("0. Logout");
                             System.out.println("1. Add Movie");
                             System.out.println("2. Edit Movie");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
-                            if (menuAdmin==1){
+                            if (menuAdmin == 0) {
+                                System.out.println("Exit");
+                                break;
+                            } else if (menuAdmin==1){
                                 System.out.println("-".repeat(50));
                                 System.out.println("Add Movie");
                                 System.out.print("Title: ");
