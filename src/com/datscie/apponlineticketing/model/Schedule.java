@@ -1,12 +1,14 @@
 package com.datscie.apponlineticketing.model;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Schedule {
     private String scheduleId;
     private Movie movie;
     private Studio studio;
     private LocalDateTime dateTime;
-    private Ticket[] tickets;
+    private List<Ticket> tickets;
     private int price;
 
     public Schedule(String scheduleId, Movie movie, Studio studio, LocalDateTime dateTime, int price) {
@@ -14,7 +16,7 @@ public class Schedule {
         this.movie = movie;
         this.studio = studio;
         this.dateTime = dateTime;
-        this.tickets = new Ticket[studio.getCapacity()];
+        this.tickets = new ArrayList<Ticket>();
         this.price = price;
     }
 
@@ -47,19 +49,27 @@ public class Schedule {
     }
 
     public Ticket[] getTickets() {
-        return tickets;
+        return tickets.toArray(new Ticket[tickets.size()]);
+    }
+
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
     }
 
     public Seat[] getAvailableSeats() {
-        Seat[] availableSeats = new Seat[studio.getCapacity()];
-        int index = 0;
-        for (int i = 0; i < tickets.length; i++) {
-            if (tickets[i] == null) {
-                availableSeats[index] = studio.getSeats()[i];
-                index++;
+        List<Seat> availableSeats = new ArrayList<Seat>();
+        for (Seat seat : studio.getSeats()) {
+            boolean isAvailable = true;
+            for (Ticket ticket : tickets) {
+                if (ticket.getSeat().equals(seat)) {
+                    isAvailable = false;
+                    break;
+                }
             }
+            if (isAvailable)
+                availableSeats.add(seat);
         }
-        return availableSeats;
+        return availableSeats.toArray(new Seat[availableSeats.size()]);
     }
 
     public int getPrice() {

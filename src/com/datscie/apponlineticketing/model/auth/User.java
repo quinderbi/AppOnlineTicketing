@@ -1,6 +1,8 @@
 package com.datscie.apponlineticketing.model.auth;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 // import javax.xml.crypto.Data;
@@ -11,14 +13,14 @@ import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.utils.DatabaseMock;
 
 public class User extends Auth {
-    private Ticket[] userTickets;
+    private List<Ticket> userTickets;
 
     public User() {
-        this.userTickets = new Ticket[] {};
+        this.userTickets = new ArrayList<Ticket>();
     }
 
     public Ticket[] getUserTickets() {
-        return userTickets;
+        return userTickets.toArray(new Ticket[userTickets.size()]);
     }
 
     public Schedule[] getAvailableSchedules() {
@@ -31,7 +33,8 @@ public class User extends Auth {
         String id = new String(array, Charset.forName("UTF-8"));
 
         Ticket ticket = new Ticket("TIX-" + id, schedule.getMovie(), schedule.getDateTime(), schedule.getStudio(), seat);
-        userTickets[userTickets.length] = ticket;
+        userTickets.add(ticket);
+        schedule.addTicket(ticket);
         return ticket;
     }
 
@@ -46,7 +49,10 @@ public class User extends Auth {
                 this.setEmail(user.getEmail());
                 this.setPhone(user.getPhone());
                 this.setPassword(user.getPassword());
-                this.userTickets = user.getUserTickets();
+
+                for (Ticket ticket : user.getUserTickets()) {
+                    this.userTickets.add(ticket);
+                }
 
                 return true;
             }
