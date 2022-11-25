@@ -104,7 +104,7 @@ public class Admin extends Auth {
     }
 
     public Studio[] getStudios() {
-        return new Studio[] {};
+        return DatabaseMock.getInstance().getStudios();
     }
 
     public void addSeat(Studio studio, Seat seat) {
