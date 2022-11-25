@@ -62,6 +62,10 @@ public class DatabaseMock {
         schedules.add(sch);
         sch = new Schedule("SCH0003", movies.get(2), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 15, 00), 35000);
         schedules.add(sch);
+
+        Admin adm = new Admin("ADM0001", "admin", "admin@gmail.com", "+62admin", "admin");
+
+        admins.add(adm);
     }
 
     public Movie[] getMovies() {

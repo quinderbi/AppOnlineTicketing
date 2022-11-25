@@ -10,7 +10,13 @@ import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.utils.DatabaseMock;
 
-public class Admin extends User {
+public class Admin extends Auth {
+    public Admin() {}
+    
+    public Admin(String id, String name, String email, String phone, String password) {
+        super(id, name, email, phone, password);
+    }
+    
     public void addMovie(String title, String genre, String director, int duration) {
         byte[] array = new byte[4];
         new Random().nextBytes(array);
