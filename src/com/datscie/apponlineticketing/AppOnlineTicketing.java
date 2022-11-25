@@ -170,7 +170,7 @@ public final class AppOnlineTicketing {
                                 for (int i = 0; i < tickets.length; i++){
                                     System.out.println((i+1) + ". " + tickets[i].getMovie().getTitle() + " - " + tickets[i].getStudio().getStudioId() + " - " + tickets[i].getDateTime() + " - " + tickets[i].getSeat().getSeatID());
                                 }
-                            }else if (menuUser == 3){
+                            } else if (menuUser == 3){
                                 break;
                             }
                         }
@@ -181,7 +181,7 @@ public final class AppOnlineTicketing {
                     }
                     // END LOGIN USER
 
-                }else{
+                } else {
                     continue;
                 }
             } else if (menu == 2){
