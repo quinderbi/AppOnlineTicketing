@@ -1,10 +1,12 @@
 package com.datscie.apponlineticketing;
 
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
+import com.datscie.apponlineticketing.model.Studio;
 import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.model.auth.Admin;
 import com.datscie.apponlineticketing.model.auth.User;
@@ -52,6 +54,8 @@ public class AppOnlineTicketing {
                             System.out.println("0. Logout");
                             System.out.println("1. Add Movie");
                             System.out.println("2. Edit Movie");
+                            System.out.println("3. Add Schedule");
+                            System.out.println("4. Show Schedules");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
                             if (menuAdmin == 0) {
@@ -114,6 +118,44 @@ public class AppOnlineTicketing {
                                         int duration = scan.nextInt();
                                         movie.setDuration(duration);
                                     }
+                                }
+                            } else if (menuAdmin==3){
+                                System.out.println("-".repeat(50));
+                                System.out.println("Add Schedule");
+                                int i = 1;
+                                for (Movie movie : admin.getMovies()){
+                                    System.out.println(i+". "+movie.getTitle());
+                                    i++;
+                                }
+                                System.out.print("Choose movie: ");
+                                int chooseMovie = scan.nextInt();
+                                Movie movie;
+                                i = 1;
+                                for (Studio studio : admin.getStudios()){
+                                    System.out.println(i+". Studio "+studio.getStudioId());
+                                    i++;
+                                }
+                                System.out.print("Choose studio: ");
+                                int chooseStudio = scan.nextInt();
+                                Studio studio;
+                                if (chooseMovie > 0 && chooseMovie <= i){
+                                    movie = admin.getMovies()[chooseMovie-1];
+                                    studio = admin.getStudios()[chooseStudio-1];
+                                    System.out.println("-".repeat(50));
+                                    System.out.println("Add Schedule");
+                                    System.out.print("Date (YYYY-MM-DD): ");
+                                    String date = scan.next();
+                                    System.out.print("Time (HH:MM): ");
+                                    String time = scan.next();
+                                    System.out.print("Price: ");
+                                    int price = scan.nextInt();
+                                    admin.addSchedule(movie, studio, LocalDateTime.parse(date+"T"+time), price);
+                                }
+                            } else if (menuAdmin == 4) {
+                                System.out.println("-".repeat(50));
+                                System.out.println("Show Schedules");
+                                for (Schedule schedule : admin.getSchedules()){
+                                    System.out.println(schedule.getMovie().getTitle()+" - "+schedule.getStudio().getStudioId()+" - "+schedule.getDateTime()+" - "+schedule.getPrice());
                                 }
                             }
                         }
