@@ -56,12 +56,13 @@ public final class AppOnlineTicketing {
                             System.out.println("2. Edit Movie");
                             System.out.println("3. Add Schedule");
                             System.out.println("4. Show Schedules");
+                            System.out.println("5. Delete Schedule");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
                             if (menuAdmin == 0) {
                                 System.out.println("Exit");
                                 break;
-                            } else if (menuAdmin==1){
+                            } else if (menuAdmin == 1){
                                 System.out.println("-".repeat(50));
                                 System.out.println("Add Movie");
                                 System.out.print("Title: ");
@@ -73,7 +74,7 @@ public final class AppOnlineTicketing {
                                 System.out.print("Director: ");
                                 String director = scan.next();
                                 admin.addMovie(title, genre, director, duration);
-                            } else if (menuAdmin==2){
+                            } else if (menuAdmin == 2){
                                 System.out.println("-".repeat(50));
                                 System.out.println("Edit Movie");
                                 int i = 1;
@@ -119,7 +120,7 @@ public final class AppOnlineTicketing {
                                         movie.setDuration(duration);
                                     }
                                 }
-                            } else if (menuAdmin==3){
+                            } else if (menuAdmin == 3){
                                 System.out.println("-".repeat(50));
                                 System.out.println("Add Schedule");
                                 int i = 1;
@@ -157,6 +158,11 @@ public final class AppOnlineTicketing {
                                 for (Schedule schedule : admin.getSchedules()){
                                     System.out.println(schedule.getMovie().getTitle()+" - "+schedule.getStudio().getStudioId()+" - "+schedule.getDateTime()+" - "+schedule.getPrice());
                                 }
+                            } else if (menuAdmin == 5) {
+                                System.out.println("-".repeat(50));
+                                System.out.println("Delete Schedule");
+                                String scheduleID = scan.next();
+                                admin.deleteSchedule(scheduleID);
                             }
                         }
                     } else {
