@@ -2,6 +2,8 @@ package com.datscie.apponlineticketing.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.Month;
 
 import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Studio;
@@ -9,6 +11,7 @@ import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.model.auth.Admin;
 import com.datscie.apponlineticketing.model.auth.User;
 import com.datscie.apponlineticketing.model.Schedule;
+import com.datscie.apponlineticketing.model.Seat;
 
 public class DatabaseMock {
     public List<Movie> movies;
@@ -23,6 +26,10 @@ public class DatabaseMock {
     public static DatabaseMock getInstance() {
         if (db == null)
             db = new DatabaseMock();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 841b33b5c98ce3247230117fec200de782978011
         return db;
     }
 
@@ -33,6 +40,28 @@ public class DatabaseMock {
         this.users = new ArrayList<User>();
         this.admins = new ArrayList<Admin>();
         this.schedules = new ArrayList<Schedule>();
+
+        Movie mov = new Movie("MOV0001", "Avengers: Endgame", "Action", "Russo", 181);
+        movies.add(mov);
+        mov = new Movie("MOV0002", "Spiderman: Far From Home", "Action", "Jon Watts", 129);
+        movies.add(mov);
+        mov = new Movie("MOV0003", "Toy Story 4", "Animation", "Josh Cooley", 100);
+        movies.add(mov);
+
+        Seat[] seatStudio1 = { new Seat("A1"), new Seat("A2"), new Seat("A3"), new Seat("A4"), new Seat("A5"),
+                new Seat("A6"),
+                new Seat("A7"), new Seat("A8"), new Seat("A9"), new Seat("A10") };
+
+        Studio std = new Studio("STD0001", seatStudio1);
+
+        studios.add(std);
+
+        Schedule sch = new Schedule("SCH0001", movies.get(0), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 10, 00), 35000);
+        schedules.add(sch);
+        sch = new Schedule("SCH0002", movies.get(1), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 12, 00), 35000);
+        schedules.add(sch);
+        sch = new Schedule("SCH0003", movies.get(2), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 15, 00), 35000);
+        schedules.add(sch);
     }
 
     public Movie[] getMovies() {

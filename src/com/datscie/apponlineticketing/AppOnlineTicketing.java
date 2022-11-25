@@ -2,6 +2,7 @@ package com.datscie.apponlineticketing;
 
 import java.util.Scanner;
 
+import com.datscie.apponlineticketing.model.Movie;
 import com.datscie.apponlineticketing.model.Schedule;
 import com.datscie.apponlineticketing.model.Seat;
 import com.datscie.apponlineticketing.model.Ticket;
@@ -49,6 +50,7 @@ public class AppOnlineTicketing {
                         while (true){
                             System.out.println("-".repeat(50));
                             System.out.println("1. Add Movie");
+                            System.out.println("2. Edit Movie");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
                             if (menuAdmin==1){
@@ -63,6 +65,52 @@ public class AppOnlineTicketing {
                                 System.out.print("Director: ");
                                 String director = scan.next();
                                 admin.addMovie(title, genre, director, duration);
+                            } else if (menuAdmin==2){
+                                System.out.println("-".repeat(50));
+                                System.out.println("Edit Movie");
+                                int i = 1;
+                                for (Movie movie : admin.getMovies()){
+                                    System.out.println(i+". "+movie.getTitle());
+                                    i++;
+                                }
+                                System.out.print("Choose movie: ");
+                                int chooseMovie = scan.nextInt();
+                                Movie movie;
+                                if (chooseMovie > 0 && chooseMovie <= i){
+                                    movie = admin.getMovies()[chooseMovie-1];
+                                    System.out.println("-".repeat(50));
+                                    System.out.println("1. Edit Title");
+                                    System.out.println("2. Edit Genre");
+                                    System.out.println("3. Edit Director");
+                                    System.out.println("4. Edit Duration");
+                                    System.out.print("Choose menu: ");
+                                    int menuEditMovie = scan.nextInt(); 
+                                    if (menuEditMovie == 1){
+                                        System.out.println("-".repeat(50));
+                                        System.out.println("Edit Title");
+                                        System.out.print("Title: ");
+                                        String title = scan.next();
+                                        movie.setTitle(title);
+                                    } else if (menuEditMovie == 2){
+                                        System.out.println("-".repeat(50));
+                                        System.out.println("Edit Genre");
+                                        System.out.print("Genre: ");
+                                        String genre = scan.next();
+                                        movie.setGenre(genre);
+                                    } else if (menuEditMovie == 3){
+                                        System.out.println("-".repeat(50));
+                                        System.out.println("Edit Director");
+                                        System.out.print("Director: ");
+                                        String director = scan.next();
+                                        movie.setDirector(director);
+                                    } else if (menuEditMovie == 4){
+                                        System.out.println("-".repeat(50));
+                                        System.out.println("Edit Duration");
+                                        System.out.print("Duration: ");
+                                        int duration = scan.nextInt();
+                                        movie.setDuration(duration);
+                                    }
+                                }
                             }
                         }
                     } else {
