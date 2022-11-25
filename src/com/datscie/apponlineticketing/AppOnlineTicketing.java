@@ -57,6 +57,7 @@ public final class AppOnlineTicketing {
                             System.out.println("3. Add Schedule");
                             System.out.println("4. Show Schedules");
                             System.out.println("5. Delete Schedule");
+                            System.out.println("6. Delete Movie");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
                             if (menuAdmin == 0) {
@@ -162,7 +163,24 @@ public final class AppOnlineTicketing {
                                 System.out.println("-".repeat(50));
                                 System.out.println("Delete Schedule");
                                 String scheduleID = scan.next();
-                                admin.deleteSchedule(scheduleID);
+                                if (scheduleID != null){
+                                    admin.deleteSchedule(scheduleID);
+                                } else {
+                                    System.out.println("Schedule ID not found");
+                                    return;
+                                }
+                            } else if (menuAdmin == 6) {
+                                System.out.println("-".repeat(50));
+                                System.out.println("Delete Movie");
+                                String movieID = scan.next();
+                                Movie movie;
+                                for (Movie m : admin.getMovies()){
+                                    if (m.getMovieId().equals(movieID)){
+                                        movie = m;
+                                        admin.deleteMovie(movie);
+                                        return;
+                                    }
+                                }
                             }
                         }
                     } else {
