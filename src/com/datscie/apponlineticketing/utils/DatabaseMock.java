@@ -26,10 +26,6 @@ public class DatabaseMock {
     public static DatabaseMock getInstance() {
         if (db == null)
             db = new DatabaseMock();
-<<<<<<< HEAD
-=======
-
->>>>>>> 841b33b5c98ce3247230117fec200de782978011
         return db;
     }
 
@@ -41,7 +37,11 @@ public class DatabaseMock {
         this.admins = new ArrayList<Admin>();
         this.schedules = new ArrayList<Schedule>();
 
-        Movie mov = new Movie("MOV0001", "Avengers: Endgame", "Action", "Russo", 181);
+        Movie mov;
+        Schedule sch;
+        Studio std;
+
+        mov = new Movie("MOV0001", "Avengers: Endgame", "Action", "Russo", 181);
         movies.add(mov);
         mov = new Movie("MOV0002", "Spiderman: Far From Home", "Action", "Jon Watts", 129);
         movies.add(mov);
@@ -52,11 +52,11 @@ public class DatabaseMock {
                 new Seat("A6"),
                 new Seat("A7"), new Seat("A8"), new Seat("A9"), new Seat("A10") };
 
-        Studio std = new Studio("STD0001", seatStudio1);
+        std = new Studio("STD0001", seatStudio1);
 
         studios.add(std);
 
-        Schedule sch = new Schedule("SCH0001", movies.get(0), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 10, 00), 35000);
+        sch = new Schedule("SCH0001", movies.get(0), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 10, 00), 35000);
         schedules.add(sch);
         sch = new Schedule("SCH0002", movies.get(1), std, LocalDateTime.of(2022, Month.NOVEMBER, 26, 12, 00), 35000);
         schedules.add(sch);

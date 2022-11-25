@@ -9,7 +9,7 @@ import com.datscie.apponlineticketing.model.Ticket;
 import com.datscie.apponlineticketing.model.auth.Admin;
 import com.datscie.apponlineticketing.model.auth.User;
 
-public class AppOnlineTicketing {
+public final class AppOnlineTicketing {
     /**
      * @param args
      */
