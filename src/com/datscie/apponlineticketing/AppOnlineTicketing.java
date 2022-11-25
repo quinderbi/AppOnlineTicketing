@@ -122,7 +122,7 @@ public final class AppOnlineTicketing {
                         continue;
                     }
                     // END LOGIN ADMIN
-                }else if (menuLogin == 2){
+                } else if (menuLogin == 2){
                     // LOGIN USER
                     System.out.println("-".repeat(50));
                     System.out.println("Login User");
