@@ -58,6 +58,8 @@ public final class AppOnlineTicketing {
                             System.out.println("4. Show Schedules");
                             System.out.println("5. Delete Schedule");
                             System.out.println("6. Delete Movie");
+                            System.out.println("7. Show Movies");
+                            System.out.println("8. Add studio");
                             System.out.print("Choose menu: ");
                             int menuAdmin = scan.nextInt();
                             if (menuAdmin == 0) {
@@ -181,7 +183,13 @@ public final class AppOnlineTicketing {
                                         return;
                                     }
                                 }
-                            }
+                            } else if (menuAdmin == 7) {
+                                System.out.println("-".repeat(50));
+                                System.out.println("Show Movies");
+                                for (Movie movie : admin.getMovies()){
+                                    System.out.println(movie.getTitle()+" - "+movie.getGenre()+" - "+movie.getDirector()+" - "+movie.getDuration());
+                                }
+                            } 
                         }
                     } else {
                         System.out.println("Login Failed");
