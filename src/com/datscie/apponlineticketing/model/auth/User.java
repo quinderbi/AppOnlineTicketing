@@ -31,7 +31,7 @@ public class User extends Auth {
         byte[] array = new byte[4];
         new Random().nextBytes(array);
         String id = new String(array, Charset.forName("UTF-8"));
-
+        
         Ticket ticket = new Ticket("TIX-" + id, schedule.getMovie(), schedule.getDateTime(), schedule.getStudio(), seat);
         userTickets.add(ticket);
         schedule.addTicket(ticket);
